@@ -1,0 +1,23 @@
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+networks:
+  net:
+
+
+#install dockercompose in ur machine
+#pull the image from docker pull jenkins/jenkins
+#create a directory jenkins_home like /home/ec2-user/jenkins/jenkins_home and give permissions to jenkins_home like chown -R ec2-user:ec2-user jenkins_home
+#injenkins folder make file like vi docker-compose.yml copy the above script and run by this command
+#docker-compose up -d
+#  to stop the container type docker-compose stop
+# to restart container type docker-compose restart jenkins
+#after jenkins start copy and paste the password from by typing this command docker logs -f jenkins

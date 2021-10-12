@@ -1,0 +1,95 @@
+1. Install docker in linux: sudo yum install docker -y
+
+2. To know the version : docker -v
+
+3. To check the docker status : sudo service docker status
+
+4. To run the docker : sudo service docker start
+
+5. To stop the docker : sudo service docker stop
+
+6. To know the docker images : docker images
+
+7. To remove the sudo before docker command : sudo usermod -aG docker $USER
+
+        Note: Then restart the instance for changes 
+
+8. To pull the image from dockerhub : docker pull imagename
+
+        ex. docker pull ubuntu
+
+9. To run the image : docker run imagename
+
+        ex. docker run ubuntu
+
+10.To run the pull image along with enter into the container : docker run -it imagename
+
+        ex. docker run -it centos
+            a) 'it' means interactive terminal
+
+11.To know the running containers : docker ps
+
+12.To list all the containers : docker ps -a
+
+13.To enter into the existing container : docker exec -it containerid /bin/bash
+                                          docker attach containerid
+14.To exit from container : press ctrl+pq
+
+15.To run image and you dont want enter into container : docker run -itd imagename
+
+16.To stop the container : docker (kill or stop) container id 
+
+17.To remove the container : docker rm containerid
+
+18.To remove the images : docker rmi imagename
+
+19.To get all detailed info of container/images : docker inspect containerid/imagename
+
+20.To copy the data from localmachine to container : 
+          ex. docker cp filename containerid:/opt(give path where to copy)
+
+21.To copy data form the container :
+           ex. docker cp containerid:/opt(path of file) .(means present dir)
+
+22.To Image a container : docker commit containerid my-image-name
+
+23.To run http server from container and map a port to container : 
+          ex. docker run -itd -p 80:80 imagename
+              note : start httpd server
+
+24.To configure dockerhub to your local docker machine : docker login
+
+25.To push image to dockerhub : docker push imagename :
+      a) Before that first tag your image and push to dockerhub
+           ex. docker tag imagename tagname(yerukalasudheer/centos)
+      b) Then push to dockerhub
+           ex. docker push imagename(yerukalasudheer/centos)
+      c) To push versioning ur image just give number to ur image tag otherwise it takes latest
+           ex. docker push yerukalasudheer/centos:2
+      d) To name a container : docker run -it --name container_name image_name
+            ex. docker run -it --name sudheer centos
+
+26.To list the volumes : docker volume ls
+
+27.To create a volume : docker volume create volumename
+
+28.To attach a volume to container : docker run -it -v volume_name:/opt imagename
+           ex: docker run -it -v demo:/opt/ centos
+
+29.To remove volume : docker volume rm volume_name
+
+30. to sync volume to your to local machine : docker run -it -v /opt:/opt centos
+
+31.To buld image from docker_file : docker build -t tag_name -f docker_filename pathofdockerfile
+            ex. docker build -t tmg -f sudheer /home/ec2-user
+
+32. To Delete all unused containers, unused networks, and dangling images : docker system prune
+
+33. List running containers. Also provides useful information about the containers :
+           ex. docker container ls -a -s
+34. TO Kill all running containers. : docker container kill $(docker ps -q)
+
+35. To Delete all containers that are not running : docker container rm $(docker ps -a -q)
+
+36. To Delete all images. Careful with this one : docker image rm $(docker images -a -q)
+           
